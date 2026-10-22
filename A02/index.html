@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cat Breeds</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-white text-dark">
+
+    <header class="container py-5 text-center">
+        <p class="text-secondary small text-uppercase mb-2">
+            A Simple Guide
+        </p>
+
+        <h1 class="display-5 fw-semibold">
+            Cat Breeds
+        </h1>
+
+        <p class="text-secondary mx-auto mt-3" style="max-width: 500px;">
+            Discover different cat breeds, their personalities,
+            origins, and care needs.
+        </p>
+    </header>
+
+    <main class="container pb-5">
+        <div class="row g-4" id="parent"></div>
+    </main>
+
+    <footer class="border-top py-4 text-center">
+        <p class="text-secondary small mb-0">
+            POSA BY INEB
+        </p>
+    </footer>
+
+    <script>
+        var cats = [
+            {
+                name: "British Shorthair",
+                origin: "United Kingdom",
+                personality: "Calm, affectionate, and independent.",
+                image: "assets/img/shorthair.jpg",
+                description: "The British Shorthair is known for its round face, dense coat, and sturdy body. It is generally easygoing and enjoys spending time near its family.",
+                fact: "Its plush coat and round cheeks give it a teddy-bear appearance.",
+                care: "Brush its coat regularly, provide balanced meals, and encourage daily play."
+            },
+            {
+                name: "Maine Coon",
+                origin: "United States",
+                personality: "Friendly, intelligent, and sociable.",
+                image: "assets/img/mainecoon.jpg",
+                description: "The Maine Coon is one of the largest domestic cat breeds. It has a long, thick coat, tufted ears, and a bushy tail.",
+                fact: "Its thick coat helps it cope with cold weather.",
+                care: "Brush its long fur regularly and provide space for climbing and exercise."
+            },
+            {
+                name: "Siamese",
+                origin: "Thailand",
+                personality: "Vocal, curious, and people-oriented.",
+                image: "assets/img/Siamese.jpg",
+                description: "The Siamese is recognized by its slender body, blue eyes, and contrasting color points. It often enjoys interaction and communicating with its owners.",
+                fact: "Siamese cats are well known for their striking blue eyes.",
+                care: "Give it daily attention, interactive play, and regular grooming."
+            },
+            {
+                name: "Persian",
+                origin: "Persia (modern-day Iran)",
+                personality: "Gentle, quiet, and relaxed.",
+                image: "assets/img/persian.jpg",
+                description: "The Persian has a long, luxurious coat and a distinctive round face. It generally prefers a calm environment and comfortable resting places.",
+                fact: "Its long coat requires more grooming than many short-haired breeds.",
+                care: "Comb its coat daily and keep its eyes and face clean as needed."
+            },
+            {
+                name: "Bengal",
+                origin: "United States",
+                personality: "Active, playful, and adventurous.",
+                image: "assets/img/bengal.jpg",
+                description: "The Bengal is famous for its spotted or marbled coat that resembles that of a wild cat. It is energetic and often enjoys exploring its surroundings.",
+                fact: "Its coat patterns give it a distinctive wild appearance.",
+                care: "Provide climbing areas, puzzle toys, and plenty of active play."
+            },
+            {
+                name: "Ragdoll",
+                origin: "United States",
+                personality: "Affectionate, gentle, and relaxed.",
+                image: "assets/img/ragdoll.jpg",
+                description: "The Ragdoll is a large, semi-longhaired cat often recognized by its blue eyes and color-point pattern. Many are known for their gentle temperament.",
+                fact: "Ragdolls are commonly recognized by their blue eyes.",
+                care: "Brush its coat several times a week and provide regular play and companionship."
+            }
+        ];
+
+        var parent = document.getElementById("parent");
+
+        for (var i = 0; i < cats.length; i++) {
+            var cat = cats[i];
+
+            var image = `
+        <div class="col-12 col-md-6">
+          <img
+            src="${cat.image}"
+            alt="${cat.name}"
+            class="img-fluid rounded-3 w-100 h-100 object-fit-cover"
+            loading="lazy"
+          >
+        </div>
+      `;
+
+            var description = `
+        <div class="col-12 col-md-6 d-flex align-items-center">
+          <div class="p-3 p-md-4 w-100">
+
+            <p class="text-secondary small text-uppercase mb-2">
+              Breed ${String(i + 1).padStart(2, "0")}
+              <span class="mx-1">·</span>
+              ${cat.origin}
+            </p>
+
+            <h2 class="h2 fw-semibold mb-3">
+              ${cat.name}
+            </h2>
+
+            <p class="text-secondary mb-4">
+              ${cat.personality}
+            </p>
+
+            <div class="border-top py-3">
+              <p class="small text-uppercase text-secondary mb-1">
+                Did you know?
+              </p>
+
+              <p class="mb-0">
+                ${cat.fact}
+              </p>
+            </div>
+
+            <button
+              class="btn btn-outline-dark btn-sm rounded-pill px-3 mt-3"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#description${i}"
+              aria-expanded="false"
+              aria-controls="description${i}"
+            >
+              More details
+            </button>
+
+            <div class="collapse mt-3" id="description${i}">
+              <div class="border-top pt-3">
+
+                <p>${cat.description}</p>
+
+                <p class="small text-secondary mb-0">
+                  <strong>Care:</strong> ${cat.care}
+                </p>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      `;
+
+            parent.innerHTML += `
+        <section class="col-12 py-3 py-md-4">
+          <div class="row g-3 g-md-5 align-items-stretch">
+            ${i % 2 === 0
+                    ? image + description
+                    : description + image
+                }
+          </div>
+        </section>
+      `;
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
+    </script>
+
+</body>
+
+</html>
